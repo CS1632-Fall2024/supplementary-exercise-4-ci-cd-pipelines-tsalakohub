@@ -1,7 +1,14 @@
 package edu.pitt.cs;
 
 import org.mockito.Mockito;
-import static org.mockito.Mockito.*; 
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public interface RentACat {
 	public static RentACat createInstance(InstanceType type) {
@@ -13,8 +20,28 @@ public interface RentACat {
 			case SOLUTION:
 				return new RentACatSolution();
 			case MOCK:
-				// TODO: Return a mock object that emulates the behavior of a real object.
-				return null;
+				RentACat mockRentACat = Mockito.mock(RentACat.class);
+
+				Cat mockCat = Mockito.mock(Cat.class);
+				when(mockCat.getId()).thenReturn(1);
+				when(mockCat.getName()).thenReturn("Jennyanydots");
+				when(mockCat.getRented()).thenReturn(false);
+				when(mockCat.toString()).thenReturn("ID 1. Jennyanydots");
+
+				List<Cat> cats = new ArrayList<>();
+				when(mockRentACat.listCats()).thenAnswer(invocation -> {
+					StringBuilder sb = new StringBuilder();
+					for (Cat c : cats) {
+						sb.append(c.toString()).append("\n");
+					}
+					return sb.toString();
+				});
+				when(mockRentACat.returnCat(anyInt())).thenReturn(false);
+				when(mockRentACat.rentCat(anyInt())).thenReturn(false);
+				when(mockRentACat.renameCat(anyInt(), anyString())).thenReturn(false);
+				doNothing().when(mockRentACat).addCat(any(Cat.class));
+
+				return mockRentACat;
 			default:
 				assert (false);
 				return null;
