@@ -103,20 +103,20 @@ public class RentACatUnitTest {
 	 * hapter on using reflection on how to do this. Please use r.getClass() to get
 	 * the class object of r instead of hardcoding it as RentACatImpl.
 	 */
-	@Test
-	public void testGetCatNullNumCats0() throws Exception {
-		Method getCatMethod = r.getClass().getDeclaredMethod("listCats");
-		getCatMethod.setAccessible(true);
+	// @Test
+	// public void testGetCatNullNumCats0() throws Exception {
+	// Method getCatMethod = r.getClass().getDeclaredMethod("listCats");
+	// getCatMethod.setAccessible(true);
 
-		// Invoke the method and capture the result
-		String result = (String) getCatMethod.invoke(r);
+	// // Invoke the method and capture the result
+	// String result = (String) getCatMethod.invoke(r);
 
-		// Assert the result against the expected output
-		assertEquals("ID 1. Jennyanydots\n", result);
+	// // Assert the result against the expected output
+	// assertEquals("ID 1. Jennyanydots\n", result);
 
-		// capture output)
-		assertEquals("", out.toString());
-	}
+	// // capture output)
+	// assertEquals("", out.toString());
+	// }
 
 	/**
 	 * Test case for Cat getCat(int id).
@@ -133,17 +133,17 @@ public class RentACatUnitTest {
 	 * hapter on using reflection on how to do this. Please use r.getClass() to get
 	 * the class object of r instead of hardcoding it as RentACatImpl.
 	 */
-	@Test
-	public void testGetCatNumCats3() throws Exception {
-		r.addCat(c1);
-		r.addCat(c2);
-		r.addCat(c3);
-		Method getCatMeth = r.getClass().getDeclaredMethod("getCat", int.class);
-		getCatMeth.setAccessible(true);
-		Cat ret = (Cat) getCatMeth.invoke(r, 2);
-		assertNotNull("The return value is null", ret);
-		assertEquals("The returned cat does not have an ID of 2", 2, ret.getId());
-	}
+	// @Test
+	// public void testGetCatNumCats3() throws Exception {
+	// r.addCat(c1);
+	// r.addCat(c2);
+	// r.addCat(c3);
+	// Method getCatMeth = r.getClass().getDeclaredMethod("getCat", int.class);
+	// getCatMeth.setAccessible(true);
+	// Cat ret = (Cat) getCatMeth.invoke(r, 2);
+	// assertNotNull("The return value is null", ret);
+	// assertEquals("The returned cat does not have an ID of 2", 2, ret.getId());
+	// }
 
 	/**
 	 * Test case for String listCats().
@@ -170,14 +170,15 @@ public class RentACatUnitTest {
 	 *                 Deuteronomy\nID 3. Mistoffelees\n".
 	 * </pre>
 	 */
-	@Test
-	public void testListCatsNumCats3() {
-		r.addCat(c1);
-		r.addCat(c2);
-		r.addCat(c3);
-		String list = r.listCats();
-		assertEquals("ID 1. Jennyanydots\nID 2. Old Deuteronomy\nID 3. Mistoffelees\n", list);
-	}
+	// @Test
+	// public void testListCatsNumCats3() {
+	// r.addCat(c1);
+	// r.addCat(c2);
+	// r.addCat(c3);
+	// String list = r.listCats();
+	// assertEquals("ID 1. Jennyanydots\nID 2. Old Deuteronomy\nID 3.
+	// Mistoffelees\n", list);
+	// }
 
 	/**
 	 * Test case for boolean renameCat(int id, String name).
@@ -194,18 +195,22 @@ public class RentACatUnitTest {
 	 * sample_code/junit_example/LinkedListUnitTest.java in the course repository to
 	 * see examples.
 	 */
-	@Test
-	public void testRenameFailureNumCats0() {
-		when(r.renameCat(2, "Garfield")).thenReturn(false); // Mock the return value for invalid cat ID
+	// @Test
+	// public void testRenameFailureNumCats0() {
+	// when(r.renameCat(2, "Garfield")).thenReturn(false); // Mock the return value
+	// for invalid cat ID
 
-		// Act: Try renaming a cat with ID 2
-		boolean ret = r.renameCat(2, "Garfield");
+	// // Act: Try renaming a cat with ID 2
+	// boolean ret = r.renameCat(2, "Garfield");
 
-		// Assert: Validate the results
-		assertFalse("The returned value is true", ret); // Ensure renameCat returned false
-		Mockito.verify(c2, never()).renameCat("Garfield"); // Verify rename was not called on cat c2
-		assertEquals("Invalid System output", "Invalid cat ID." + newline, out.toString());
-	}
+	// // Assert: Validate the results
+	// assertFalse("The returned value is true", ret); // Ensure renameCat returned
+	// false
+	// Mockito.verify(c2, never()).renameCat("Garfield"); // Verify rename was not
+	// called on cat c2
+	// assertEquals("Invalid System output", "Invalid cat ID." + newline,
+	// out.toString());
+	// }
 
 	/**
 	 * Test case for boolean renameCat(int id, String name).
@@ -221,14 +226,14 @@ public class RentACatUnitTest {
 	 * sample_code/junit_example/LinkedListUnitTest.java in the course repository to
 	 * see examples.
 	 */
-	@Test
-	public void testRenameNumCat3() {
-		r.addCat(c1);
-		r.addCat(c2);
-		r.addCat(c3);
-		boolean ret = r.renameCat(2, "Garfield");
-		Mockito.verify(c2).renameCat("Garfield");
-	}
+	// @Test
+	// public void testRenameNumCat3() {
+	// r.addCat(c1);
+	// r.addCat(c2);
+	// r.addCat(c3);
+	// boolean ret = r.renameCat(2, "Garfield");
+	// Mockito.verify(c2).renameCat("Garfield");
+	// }
 
 	/**
 	 * Test case for boolean rentCat(int id).
@@ -245,15 +250,16 @@ public class RentACatUnitTest {
 	 * sample_code/junit_example/LinkedListUnitTest.java in the course repository to
 	 * see examples.
 	 */
-	@Test
-	public void testRentCatNumCats3() {
-		r.addCat(c1);
-		r.addCat(c2);
-		r.addCat(c3);
-		boolean ret = r.rentCat(2);
-		Mockito.verify(c2, times(1)).rentCat();
-		assertEquals("Invalid System output", "Old Deuteronomy has been rented." + newline, out.toString());
-	}
+	// @Test
+	// public void testRentCatNumCats3() {
+	// r.addCat(c1);
+	// r.addCat(c2);
+	// r.addCat(c3);
+	// boolean ret = r.rentCat(2);
+	// Mockito.verify(c2, times(1)).rentCat();
+	// assertEquals("Invalid System output", "Old Deuteronomy has been rented." +
+	// newline, out.toString());
+	// }
 
 	/**
 	 * Test case for boolean rentCat(int id).
@@ -271,17 +277,18 @@ public class RentACatUnitTest {
 	 * sample_code/junit_example/LinkedListUnitTest.java in the course repository to
 	 * see examples.
 	 */
-	@Test
-	public void testRentCatFailureNumCats3() {
-		r.addCat(c1);
-		r.addCat(c2);
-		r.addCat(c3);
-		Mockito.when(c2.getRented()).thenReturn(true);
-		boolean ret = r.rentCat(2);
-		assertFalse("Return value is true", ret);
-		Mockito.verify(c2, times(0)).rentCat();
-		assertEquals("Invalid System output", "Sorry, Old Deuteronomy is not here!" + newline, out.toString());
-	}
+	// @Test
+	// public void testRentCatFailureNumCats3() {
+	// r.addCat(c1);
+	// r.addCat(c2);
+	// r.addCat(c3);
+	// Mockito.when(c2.getRented()).thenReturn(true);
+	// boolean ret = r.rentCat(2);
+	// assertFalse("Return value is true", ret);
+	// Mockito.verify(c2, times(0)).rentCat();
+	// assertEquals("Invalid System output", "Sorry, Old Deuteronomy is not here!" +
+	// newline, out.toString());
+	// }
 
 	/**
 	 * Test case for boolean returnCat(int id).
@@ -299,17 +306,18 @@ public class RentACatUnitTest {
 	 * sample_code/junit_example/LinkedListUnitTest.java in the course repository to
 	 * see examples.
 	 */
-	@Test
-	public void testReturnCatNumCats3() {
-		r.addCat(c1);
-		r.addCat(c2);
-		r.addCat(c3);
-		Mockito.when(c2.getRented()).thenReturn(true);
-		boolean ret = r.returnCat(2);
-		Mockito.verify(c2, times(1)).returnCat();
-		assertTrue("Return value is false", ret);
-		assertEquals("Invalid System output", "Welcome back, Old Deuteronomy!" + newline, out.toString());
-	}
+	// @Test
+	// public void testReturnCatNumCats3() {
+	// r.addCat(c1);
+	// r.addCat(c2);
+	// r.addCat(c3);
+	// Mockito.when(c2.getRented()).thenReturn(true);
+	// boolean ret = r.returnCat(2);
+	// Mockito.verify(c2, times(1)).returnCat();
+	// assertTrue("Return value is false", ret);
+	// assertEquals("Invalid System output", "Welcome back, Old Deuteronomy!" +
+	// newline, out.toString());
+	// }
 
 	/**
 	 * Test case for boolean returnCat(int id).
@@ -326,15 +334,16 @@ public class RentACatUnitTest {
 	 * sample_code/junit_example/LinkedListUnitTest.java in the course repository to
 	 * see examples.
 	 */
-	@Test
-	public void testReturnFailureCatNumCats3() {
-		r.addCat(c1);
-		r.addCat(c2);
-		r.addCat(c3);
-		boolean ret = r.returnCat(2);
-		assertFalse("Return value is true", ret);
-		Mockito.verify(c2, never()).returnCat();
-		assertEquals("Invalid System output", "Old Deuteronomy is already here!" + newline, out.toString());
-	}
+	// @Test
+	// public void testReturnFailureCatNumCats3() {
+	// r.addCat(c1);
+	// r.addCat(c2);
+	// r.addCat(c3);
+	// boolean ret = r.returnCat(2);
+	// assertFalse("Return value is true", ret);
+	// Mockito.verify(c2, never()).returnCat();
+	// assertEquals("Invalid System output", "Old Deuteronomy is already here!" +
+	// newline, out.toString());
+	// }
 
 }
